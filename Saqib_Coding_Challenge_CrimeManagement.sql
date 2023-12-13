@@ -172,7 +172,7 @@ WHERE CrimeID IN (SELECT CrimeID FROM Crime WHERE IncidentType = 'Robbery');
 
 
 
--- 12. List incident types with more than one open case.  No data as there are no more than 1 open cases
+-- 12. List incident types with more than one open case.  (No data as there are no more than 1 open cases)
 SELECT IncidentType, COUNT(*) AS OpenCases
 FROM Crime
 WHERE Status = 'Open'
@@ -181,7 +181,7 @@ HAVING COUNT(*) > 1;
 
 
 
--- 13. List all incidents with suspects whose names also appear as victims in other incidents. No data as there are no such cases
+-- 13. List all incidents with suspects whose names also appear as victims in other incidents. (No data as there are no such cases)
 
 SELECT C.*, V.Name AS VictimName, S.Name AS SuspectName
 FROM Crime C
@@ -199,7 +199,7 @@ LEFT JOIN Suspect S ON C.CrimeID = S.CrimeID;
 
 
 
--- 15. Find incidents where the suspect is older than any victim. No data as thera are no such cases
+-- 15. Find incidents where the suspect is older than any victim. (No data as thera are no such cases)
 
 SELECT C.*
 FROM Crime C
@@ -208,7 +208,7 @@ WHERE S.Age > ANY (SELECT Age FROM Victim WHERE CrimeID = C.CrimeID);
 
 
 
--- 16. Find suspects involved in multiple incidents: No data as there are no such cases
+-- 16. Find suspects involved in multiple incidents: (No data as there are no such cases)
 
 SELECT SuspectID, Name, COUNT(CrimeID) AS IncidentCount
 FROM Suspect
@@ -226,7 +226,7 @@ WHERE S.Name = 'Unknown';
 
 
 
--- 18. List all cases where at least one incident is of type 'Homicide' and all other incidents are of type 'Robbery'.
+-- 18. List all cases where at least one incident is of type 'Homicide' and all other incidents are of type 'Robbery' (No.data as no such case exist)
 
 SELECT C.*
 FROM Crime C
@@ -236,7 +236,6 @@ WHERE IncidentType = 'Homicide'
     FROM Crime C2
     WHERE C.CrimeID <> C2.CrimeID AND C2.IncidentType <> 'Robbery'
 );
-
 
 
 
