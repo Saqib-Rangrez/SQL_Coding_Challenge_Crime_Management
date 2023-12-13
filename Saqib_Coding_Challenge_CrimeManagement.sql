@@ -226,17 +226,16 @@ WHERE S.Name = 'Unknown';
 
 
 
--- 18. List all cases where at least one incident is of type 'Homicide' and all other incidents are of type 'Robbery' (No.data as no such case exist)
+-- 18. List all cases where at least one incident is of type 'Homicide' and all other incidents are of type 'Robbery' 
 
 SELECT C.*
 FROM Crime C
 WHERE IncidentType = 'Homicide'
-  AND NOT EXISTS (
-    SELECT 1
-    FROM Crime C2
-    WHERE C.CrimeID <> C2.CrimeID AND C2.IncidentType <> 'Robbery'
-);
-
+   OR (IncidentType = 'Robbery' AND NOT EXISTS (
+        SELECT 1
+        FROM Crime C2
+        WHERE C.CrimeID = C2.CrimeID AND C2.IncidentType = 'Homicide'
+  ));
 
 
 -- 19. Retrieve a list of all incidents and the associated suspects, showing suspects for each incident, or 'No Suspect' if there are none.
