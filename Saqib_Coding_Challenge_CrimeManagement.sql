@@ -233,14 +233,6 @@ FROM Crime C
 WHERE IncidentType = 'Homicide'
   AND NOT EXISTS (
     SELECT 1
-    FROM Crime
-    WHERE CrimeID <> C.CrimeID AND IncidentType <> 'Robbery');
-
-SELECT C.*
-FROM Crime C
-WHERE IncidentType = 'Homicide'
-  AND NOT EXISTS (
-    SELECT 1
     FROM Crime C2
     WHERE C.CrimeID <> C2.CrimeID AND C2.IncidentType <> 'Robbery'
 );
