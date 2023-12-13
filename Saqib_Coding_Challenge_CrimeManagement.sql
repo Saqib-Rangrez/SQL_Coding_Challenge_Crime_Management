@@ -90,7 +90,9 @@ SELECT * FROM Crime WHERE IncidentDate BETWEEN '2023-09-01' AND '2023-09-10';
 
 -- 5. 
 -- As there is no Age column we need to add and insert data for it as it is requiredd in further queries
+
 ALTER TABLE Victim ADD Age INT;
+
 UPDATE Victim
 SET Age = 
     CASE 
@@ -109,6 +111,8 @@ SET Age =
         WHEN SuspectID = 3 THEN 50
     END
 WHERE SuspectID IN (1, 2, 3);
+--Execute the above alter and update command before proceeding ahead
+
 
 --5. List persons involved in incidents in descending order of age.
 SELECT Name, Age FROM Victim
