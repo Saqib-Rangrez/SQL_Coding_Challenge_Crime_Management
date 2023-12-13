@@ -56,12 +56,7 @@ INSERT INTO Suspect (SuspectID, CrimeID, Name, Description, CriminalHistory) VAL
 (3, 3, 'Suspect 1', 'Shoplifting suspect', 'Prior shoplifting arrests');
 
 
---Testing above created tables
-select * from Crime;
-select * from Victim;
-select * from Suspect;
-
-
+--------------------------------------------------------------------------------------------------------------------------------
 
 --Tasks
 -- 1. Select all open incidents.	
@@ -240,6 +235,15 @@ WHERE IncidentType = 'Homicide'
     SELECT 1
     FROM Crime
     WHERE CrimeID <> C.CrimeID AND IncidentType <> 'Robbery');
+
+SELECT C.*
+FROM Crime C
+WHERE IncidentType = 'Homicide'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM Crime C2
+    WHERE C.CrimeID <> C2.CrimeID AND C2.IncidentType <> 'Robbery'
+);
 
 
 
