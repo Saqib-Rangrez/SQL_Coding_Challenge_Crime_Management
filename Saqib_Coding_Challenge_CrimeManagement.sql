@@ -103,6 +103,7 @@ SET Age =
 WHERE VictimID IN (1, 2, 3);
 
 ALTER TABLE Suspect ADD Age INT;
+
 UPDATE Suspect
 SET Age = 
     CASE 
@@ -239,6 +240,7 @@ WHERE IncidentType = 'Homicide'
     SELECT 1
     FROM Crime
     WHERE CrimeID <> C.CrimeID AND IncidentType <> 'Robbery');
+
 
 
 
